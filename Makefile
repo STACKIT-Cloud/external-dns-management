@@ -2,6 +2,12 @@ EXECUTABLE=dns-controller-manager
 PROJECT=github.com/gardener/external-dns-management
 VERSION=$(shell cat VERSION)
 
+.PHONY: docker-images
+docker-images:
+	cp -rvf bin build/
+	docker build -t registry.ske.eu01.stackit.cloud/ske/dns-controller:$(VERSION) build/
+	docker push registry.ske.eu01.stackit.cloud/ske/dns-controller:$(VERSION)
+
 .PHONY: revendor
 revendor:
 	@GO111MODULE=on go mod vendor
