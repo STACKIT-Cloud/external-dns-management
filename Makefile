@@ -5,6 +5,12 @@ IMAGE_REPOSITORY      := $(REGISTRY)/dns-controller-manager
 VERSION               := $(shell cat VERSION)
 IMAGE_TAG             := $(VERSION)
 
+.PHONY: docker-images
+docker-images:
+	cp -rvf bin build/
+	docker build -t registry.ske.eu01.stackit.cloud/ske/dns-controller:$(VERSION) build/
+	docker push registry.ske.eu01.stackit.cloud/ske/dns-controller:$(VERSION)
+
 .PHONY: revendor
 revendor:
 	@GO111MODULE=on go mod vendor
