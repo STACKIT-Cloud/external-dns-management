@@ -8,6 +8,8 @@ image:
   tag: v0.7.21
   pullPolicy: IfNotPresent
 
+env: []
+
 resources:
   requests:
    cpu: 100m
